@@ -14,7 +14,13 @@
 
 ## Battle-Tested Results
 
-This skill powers a **production LLM Wiki** that's been in daily use since April 2026:
+> **Key Takeaways**
+> - ✅ Production-ready: 94 articles, 99 sources, daily use since April 2026
+> - ✅ Works with Claude Code, Cursor, Codex CLI, OpenCode
+> - ✅ Agent Skills standard (SKILL.md) compatible
+> - ✅ Three operations: Ingest → compile sources into wiki, Query → search with citations, Lint → health checks
+
+This skill powers a **production knowledge base** that's been in daily use since April 2026:
 
 | Metric | Count | Growth |
 |--------|-------|--------|
@@ -60,11 +66,19 @@ The skill checks for broken links, missing index entries, stale cross-references
 
 ## How Your LLM Wiki Works
 
-Inspired by [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f):
+**What is this skill?**
+
+This skill is a SKILL.md-compatible implementation of Karpathy's knowledge compilation pattern. It turns raw documents into a structured, interlinked wiki that compounds over time.
+
+Inspired by [Karpathy's LLM Wiki idea](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (published April 4, 2026, 2,100+ stars in 12 hours):
 
 > "The LLM writes and maintains the wiki; the human reads and asks questions."
 
-The skill manages two directories in your project:
+**What is the Agent Skills standard?**
+
+Agent Skills is an open standard for defining reusable skills via `SKILL.md` files. It's supported by Claude Code, Cursor, Codex CLI, OpenCode, and other LLM coding tools. The standard enables skill discovery, installation via `npx add-skill`, and cross-tool compatibility.
+
+**Architecture**
 
 ```
 your-project/
@@ -104,7 +118,37 @@ This skill follows the [agentskills.io](https://agentskills.io) open standard. I
 
 ## Inspired By
 
-This is an unofficial community implementation of the LLM Wiki workflow described in [Karpathy's idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026). The core value is a battle-tested set of compilation principles and workflow templates, not the code itself.
+This is an unofficial community implementation of the knowledge compilation workflow described in [Karpathy's idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026). The core value is a battle-tested set of compilation principles and workflow templates, not the code itself.
+
+## FAQ
+
+**What is an LLM Wiki?**
+
+An LLM Wiki is a knowledge management system where a large language model automatically writes, maintains, and queries a structured wiki from your raw source materials. Unlike RAG which retrieves at query time, an LLM Wiki compiles knowledge once into interlinked pages that compound over time.
+
+**Which tools are compatible?**
+
+Claude Code, Cursor, Codex CLI, OpenCode, and any tool that supports the Agent Skills (SKILL.md) standard. Install with `npx add-skill Astro-Han/karpathy-llm-wiki`.
+
+**How does this differ from RAG?**
+
+RAG searches raw document chunks at each query, re-deriving relationships every time. LLM Wiki pre-compiles documents into structured pages with cross-references, entity pages, and an index. Each new source enriches existing articles instead of being searched independently. Knowledge compounds, not repeats.
+
+**What sources can I ingest?**
+
+URLs (web articles, papers, blog posts), local files (PDFs, markdown, text), or pasted text. The skill converts everything to markdown in `raw/` and compiles into `wiki/`.
+
+**Is this production-ready?**
+
+Yes. This skill powers a real knowledge base with 94 articles and 99 sources, maintained daily since April 2026. See [examples/](examples/) for actual wiki pages and operation logs.
+
+**How do I start?**
+
+```bash
+npx add-skill Astro-Han/karpathy-llm-wiki
+```
+
+Then tell your LLM: "Ingest this article: [URL]"
 
 ## License
 
